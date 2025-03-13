@@ -1,0 +1,17 @@
+{
+    "name": "dima/weather_parser",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dimitrytar22",
+            "email": "dtarasenko212006@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-curl": "*"
+    }
+}
