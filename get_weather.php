@@ -20,7 +20,7 @@ echo json_encode([
     'status' => (bool)$response,
     'error' => (bool)$response ? null : [
         'code' => 500,
-        'message' => 'Couldn`t get data'
+        'message' => "Couldn't get data"
     ],
     'data' => (bool)$response ? $response : null,
 ]);

@@ -46,7 +46,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let windDir = getWindDirection(day.winddir);
 
             let hourlyWeatherBlock = ``;
-            for (let hour of day.hours) {
+            let hourlyBlockExists = true;
+            if(!day.hours){
+                hourlyBlockExists = false;
+            }
+
+            for (let hour of day.hours ?? []) {
                 hourlyWeatherBlock += `<tr>
                     <td><strong>${hour.datetime}</strong></td>
                     <td class="text-primary fw-bold">${hour.feelslike}°C</td>
@@ -74,30 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 
-    <h4 class="mb-3">
-        🕒 Hourly Forecast
-        <button class="btn btn-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#${uniqueId}">
-            🔼 Toggle Hourly Forecast
-        </button>
-    </h4>
-
-    <div id="${uniqueId}" class="collapse">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th class="text-center">Time</th>
-                        <th class="text-center">🌡️ Temperature (°C)</th>
-                        <th class="text-center">☔ Precipitation (%)</th>
-                    </tr>
-                </thead>
-                <tbody id="hourly-weather" class="text-center">
-                    ${hourlyWeatherBlock}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>`;
+    ${hourlyBlockExists === true ? `<h4 class="mb-3">\n        🕒 Hourly Forecast\n        <button class="btn btn-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#${uniqueId}">\n            🔼 Toggle Hourly Forecast\n        </button>\n    </h4>\n\n    <div id="${uniqueId}" class="collapse">\n        <div class="table-responsive">\n            <table class="table table-hover align-middle">\n                <thead class="table-dark">\n                    <tr>\n                        <th class="text-center">Time</th>\n                        <th class="text-center">🌡️ Temperature (°C)</th>\n                        <th class="text-center">☔ Precipitation (%)</th>\n                    </tr>\n                </thead>\n                <tbody id="hourly-weather" class="text-center">\n                    ${hourlyWeatherBlock}\n                </tbody>\n            </table>\n        </div>\n    </div>` : ""}
+    
+    </div>`;
 
             weatherElement.innerHTML += weatherBlock;
         }
