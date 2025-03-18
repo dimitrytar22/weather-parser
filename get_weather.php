@@ -22,5 +22,5 @@ echo json_encode([
         'code' => 500,
         'message' => 'Couldn`t get data'
     ],
-    'days' => (bool)$response ? $response->days : null,
+    'data' => (bool)$response ? $response : null,
 ]);
